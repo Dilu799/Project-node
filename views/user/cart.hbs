@@ -6,16 +6,11 @@
                     <th scope="col">Item</th>
                     <th scope="col">Title</th>
                     <th scope="col">Quantity</th>
-<<<<<<< HEAD
                     <th>Edit</th>
-=======
-                    <th scope="col">Edit</th>
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
                 </tr>
             </thead>
             <tbody>
                 {{#each products}}
-<<<<<<< HEAD
             <tr>
                
                 <td><img src="/product-images/{{this.product._id}}.jpg" style="width: 70px; height:70px;" alt=""></td>
@@ -36,28 +31,6 @@
 <script>
     function changeQuantity(cartId,proId,count){
 
-=======
-                <tr>
-                    <td>
-                        <img style="width:50px; height:auto;"
-                            src="/product-images/{{this.product._id}}.jpg" alt="">
-                    </td>
-                    <td>{{this.product.Name}}</td>
-                    <td>
-                        <button class="cart-item-count mr-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button>{{this.quantity}}<button class="cart-item-count ml-3" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)">+</button>
-                    </td>
-                    <td>
-                        <a href="" class="btn btn-danger">Remove</a>
-                    </td>
-                </tr>
-                {{/each}}
-            </tbody>
-        </table>
-    </div>
-</section>
-<script>
-    function changeQuantity(cartId,proId,count){
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
         $.ajax({
             url:'/change-product-quantity',
             data:{
@@ -67,17 +40,13 @@
             },
             method:'post',
             success:(response)=>{
-<<<<<<< HEAD
                 if(response){
-                    let count = $('#quantity-count'+proId).html()
-                    count = parseInt(count)+1
-                    $("#quantity-count"+proId).html(count)
+                    let qty = $('#quantity-count'+proId).html()
+                    qty = parseInt(qty)+count
+                    $("#quantity-count"+proId).html(qty)
                 }
            
                 
-=======
-                alert(response)
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
             }
         })
     }

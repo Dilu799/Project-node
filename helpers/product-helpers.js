@@ -28,7 +28,6 @@ module.exports = {
             })
         })
     },
-<<<<<<< HEAD
     updateProduct:(proId,proDetails)=>{
         return new Promise((resolve,reject)=>{
             db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:objectId(proId)},
@@ -37,15 +36,6 @@ module.exports = {
                     Name:proDetails.Name,
                     Description:proDetails.Description,
                     Price:proDetails.Price,
-=======
-    updateProduct:(proId, proDetails)=>{
-        return new Promise((resolve,reject)=>{
-            db.get().collection(collection.PRODUCT_COLLECTION).updateOne({_id:objectId(proId)},{
-                $set:{
-                    Name:proDetails.Name,
-                    Description:proDetails.Description,
-                    price:proDetails.Price,
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
                     Category:proDetails.Category
                 }
             }).then((response)=>{

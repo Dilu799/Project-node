@@ -3,11 +3,7 @@
         <div class="row">
             <div class="col-md-6">
                 <h2 class="text-center">Edit product</h2>
-<<<<<<< HEAD
                 <form action="/admin/edit-product/{{product._id}}" method="POST" enctype="multipart/form-data">
-=======
-                <form action="/admin/edit-product/{{product._id}} " method="POST" enctype="multipart/form-data">
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
                     <label for="">Name</label>
                     <input type="text" name="Name" class="form-control" value="{{product.Name}}">
 
@@ -17,21 +13,12 @@
                      <label for="">Price</label>
                     <input type="text" name="Price" class="form-control" value="{{product.Price}}">
 
-<<<<<<< HEAD
                      <label for="">Description</label> 
                     <input type="text" name="Description" class="form-control" value="{{product.Description}}">
 
                      <label for="">Image</label>
                      <img src="/product-images/{{product._id}}.jpg" style="width:100px; height:auto;" alt="" id="imgView" class="pt-3">
                     <input type="file" name="image" class="form-control" onchange="viewImage(event) ">
-=======
-                     <label for="">Description</label>
-                    <input type="text" name="Description" class="form-control" value="{{product.Description}}">
-
-                     <label for="">Image</label>
-                     <img src="/product-images/{{product._id}}.jpg" style="width: 50px height:auto;" id="imgView" class="pt-3" alt="">
-                    <input type="file" name="Image" class="form-control" onchange="viewImage(event)">
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
 
                     <button type="submit" class="btn btn-success mt-4">Submit</button>
                 </form>
@@ -41,10 +28,6 @@
 </section>
 <script>
     function viewImage(event){
-<<<<<<< HEAD
         document.getElementById('imgView').src=URL.createObjectURL(event.target.files[0])
-=======
-        document.getElementById("imgView").src = URL.createObjectURL(event.target.files[0])
->>>>>>> 28abe3c7411c945fe10eb7bbf6f58a328d3935d9
     }
 </script>
