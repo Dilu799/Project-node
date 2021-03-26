@@ -38,3 +38,24 @@ function changeQuantity(cartId,proId,count){
         }
     })
 }
+
+function removeProduct(cartId,proId){
+    console.log('');
+    $.ajax({
+        url:'/remove-product',
+        data:{
+            cart:cartId,
+            product:proId,
+        },
+        method:'post',
+        success:(response)=>{
+            if(response.removeProduct){
+                alert("product Removed from cart")
+                location.reload()
+            }else{
+                alert("counldn't remove item")
+            }
+            
+        }
+    })
+}
