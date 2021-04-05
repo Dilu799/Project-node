@@ -13,12 +13,14 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/">products</a>
                     </li>
+                    {{#unless cart}}
                     <li class="nav-item">
                         <a class="nav-link" href="/cart">Cart<span class="badge badge-success" id="cart-count">{{cartCount}}</span></a>
                     </li>
+                    {{/unless}}
                     {{# if user}}
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Orders</a>
+                        <a class="nav-link" href="/orders">Orders</a>
                     </li>
                     {{/if}}
 
@@ -34,6 +36,7 @@
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                         {{# if user}}
+                     
                         <li>
                         <a class="dropdown-item" href="/logout">Logout</a>
                         </li>

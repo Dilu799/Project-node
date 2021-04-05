@@ -2,17 +2,53 @@ var express = require('express');
 const { response } = require('../app');
 var router = express.Router();
 var productHelpers = require('../helpers/product-helpers');
+const userHelpers = require('../helpers/user-helpers');
+const verifyLogin = (req,res,next)=>{
+  if(req.session.admin){
+    next()
+  }else{
+    res.redirect('/admin-login')
+  }
+}
 
-
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-   
-  productHelpers.getAllProducts().then((products)=>{
+router.get('/admin',async(req,res)=>{
+  if(req.session.admin){
+ await productHelpers.getAllProducts().then((products)=>{
     res.render('admin/view-products', {admin: true, products });
- 
   })
-});
+}else{
+  res.redirect('/admin-login')
+}
+})
 
+router.get('/admin-login',async(req,res)=>{
+  if(req.session.admin){
+    await productHelpers.getAllProducts().then((products)=>{
+      res.render('admin/view-products', {admin: true, products });
+  })
+}else{
+  res.render('admin/admin-login')
+}
+})
+
+router.post('/admin-login',(req,res)=>{
+  userHelpers.adminLogin(req.body).then((response)=>{
+    if(response.status){
+      req.session.admin = response.admin;
+      req.session.admin.loggedIn = true;
+      res.redirect('/admin');
+    }else{
+      res.render('admin/admin-login',{"loginErr":req.session.userLoginErr})
+      req.session.userLoginErr = false; 
+    }
+  }).catch(()=>{
+    console.log("Invalid user")
+  })
+})
+router.get('/admin-logout',(req,res)=>{
+  req.session.admin = null;
+  res.redirect('/admin-login');
+})
 router.get('/add-product', function(req,res){
   res.render('admin/add-product');
 });
@@ -32,8 +68,7 @@ router.post('/add-product',(req,res)=>{
 router.get('/delete-product/:id',(req,res,)=>{
   let proId = req.params.id
   productHelpers.deleteProduct(proId).then((response)=>{
-    res.redirect('/admin/')
-    
+    res.redirect('/admin')
   })
   
 })
@@ -52,4 +87,13 @@ router.post('/edit-product/:id', (req,res)=>{
   })
 })
 
+router.get('/allorders',async(req,res)=>{
+  let orders = await userHelpers.getAllOrders();
+  res.render('admin/admin-allorders',{orders})
+})
+
+router.get('allusers',async(req,res)=>{
+  let users = await userHelpers.getAllUsers();
+  res.render('admin/admin-allusers',{users})
+})
 module.exports = router;
